@@ -19,9 +19,13 @@ public class CategoriaService {
 
     @Transactional(readOnly = true)
     public List<CategoriaProjection> listarCategorias() {
+        List<CategoriaProjection> cat;
 
-
-        List<CategoriaProjection> cat = categoriaRepository.listarCategorias();
+        try {
+            cat = categoriaRepository.listarCategorias();
+        }catch (Exception e){
+            throw new RuntimeException("Erro ao listar categorias");
+        }
 
         if (cat.isEmpty()) {
             throw new ResourceNotFoundException("Nenhuma categoria encontrada");
@@ -37,5 +41,22 @@ public class CategoriaService {
         categoria.setDescricao(categoriaDTO.getDescricao());
         categoriaRepository.save(categoria);
         return new CategoriaDTO(categoria);
+    }
+
+    @Transactional
+    public CategoriaDTO atualizarCategoria(CategoriaDTO categoriaDTO) {
+        Categoria categoria = categoriaRepository.findById(categoriaDTO.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Categoria não encontrada"));
+        categoria.setNome(categoriaDTO.getNome());
+        categoria.setDescricao(categoriaDTO.getDescricao());
+        categoriaRepository.save(categoria);
+        return new CategoriaDTO(categoria);
+    }
+
+    @Transactional
+    public void deletarCategoria(Long id) {
+        Categoria categoria = categoriaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Categoria não encontrada"));
+        categoriaRepository.delete(categoria);
     }
 }

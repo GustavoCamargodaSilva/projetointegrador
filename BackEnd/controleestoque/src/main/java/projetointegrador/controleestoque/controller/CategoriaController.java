@@ -29,4 +29,16 @@ public class CategoriaController {
         CategoriaDTO categoria = categoriaService.cadastrarCategoria(categoriaDTO);
         return ResponseEntity.ok().body(categoria);
     }
+
+    @PutMapping("/atualizarcategoria")
+    public ResponseEntity<CategoriaDTO> atualizarCategoria(@Valid @RequestBody CategoriaDTO categoriaDTO){
+        CategoriaDTO categoria = categoriaService.atualizarCategoria(categoriaDTO);
+        return ResponseEntity.ok().body(categoria);
+    }
+
+    @DeleteMapping("/deletarcategoria/{id}")
+    public ResponseEntity<Void> deletarCategoria(@PathVariable Long id){
+        categoriaService.deletarCategoria(id);
+        return ResponseEntity.noContent().build();
+    }
 }
