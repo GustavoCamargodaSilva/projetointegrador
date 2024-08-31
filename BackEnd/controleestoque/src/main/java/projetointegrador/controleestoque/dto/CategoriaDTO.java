@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import projetointegrador.controleestoque.entitie.Categoria;
 import projetointegrador.controleestoque.entitie.Produto;
+import projetointegrador.controleestoque.projection.CategoriaProjection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,7 +20,7 @@ public class CategoriaDTO {
     @NotNull(message = "O campo descrição é obrigatório")
     private String descricao;
 
-    private List<ProdutoDTO> produtos;
+    private List<ProdutoDTO> produtos = new ArrayList<>();
 
     public CategoriaDTO() { }
 
@@ -35,5 +37,11 @@ public class CategoriaDTO {
         for(Produto produto : categoria.getProdutos()) {
             this.produtos.add(new ProdutoDTO(produto));
         }
+    }
+
+    public CategoriaDTO(CategoriaProjection categoria) {
+        this.id = categoria.getId();
+        this.nome = categoria.getNome();
+        this.descricao = categoria.getDescricao();
     }
 }
