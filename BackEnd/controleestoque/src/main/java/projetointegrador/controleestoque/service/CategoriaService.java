@@ -7,6 +7,7 @@ import projetointegrador.controleestoque.dto.CategoriaDTO;
 import projetointegrador.controleestoque.entitie.Categoria;
 import projetointegrador.controleestoque.projection.CategoriaProjection;
 import projetointegrador.controleestoque.repository.CategoriaRepository;
+import projetointegrador.controleestoque.service.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -19,7 +20,13 @@ public class CategoriaService {
     @Transactional(readOnly = true)
     public List<CategoriaProjection> listarCategorias() {
 
+
         List<CategoriaProjection> cat = categoriaRepository.listarCategorias();
+
+        if (cat.isEmpty()) {
+            throw new ResourceNotFoundException("Nenhuma categoria encontrada");
+        }
+
         return cat;
     }
 
