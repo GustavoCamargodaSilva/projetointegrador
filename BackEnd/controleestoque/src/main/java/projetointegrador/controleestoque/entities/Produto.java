@@ -3,29 +3,28 @@ package projetointegrador.controleestoque.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
-@Table(name = "categoria")
+@Table(name = "produto")
 @Data
-public class Categoria {
+public class Produto {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String descricao;
+    private Integer quantidade;
 
-    @OneToMany(mappedBy = "categoria")
-    private Set<Produto> produtos = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
-    public Categoria() { }
+    public Produto() { }
 
-    public Categoria(Long id, String nome, String descricao) {
+    public Produto(Long id, String nome, String descricao, Integer quantidade) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.quantidade = quantidade;
     }
-
 }
