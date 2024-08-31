@@ -1,10 +1,9 @@
 package projetointegrador.controleestoque.dto;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import projetointegrador.controleestoque.entities.Produto;
+import projetointegrador.controleestoque.entitie.Produto;
 
 @Getter
 @Setter

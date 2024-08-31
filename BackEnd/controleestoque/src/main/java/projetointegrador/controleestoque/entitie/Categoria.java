@@ -1,7 +1,6 @@
-package projetointegrador.controleestoque.entities;
+package projetointegrador.controleestoque.entitie;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

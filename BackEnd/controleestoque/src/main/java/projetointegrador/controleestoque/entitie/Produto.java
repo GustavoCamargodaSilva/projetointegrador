@@ -1,11 +1,13 @@
-package projetointegrador.controleestoque.entities;
+package projetointegrador.controleestoque.entitie;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "produto")
-@Data
+@Getter
+@Setter
 public class Produto {
 
     @Id
