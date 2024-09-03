@@ -14,22 +14,19 @@ public class ProdutoDTO {
     private String nome;
     @NotNull(message = "O campo descrição é obrigatório")
     private String descricao;
-    @NotNull(message = "O campo preço é obrigatório")
-    private Double preco;
+    @NotNull(message = "O campo quantidade é obrigatório")
     private Integer quantidade;
     @NotNull(message = "O campo categoria é obrigatório")
-    private CategoriaDTO categoria;
+    private String nomeCategoria;
 
-    public ProdutoDTO() {
-    }
+    public ProdutoDTO() { }
 
-    public ProdutoDTO(Long id, String nome, String descricao, Double preco, Integer quantidade, CategoriaDTO categoria) {
+    public ProdutoDTO(Long id, String nome, String descricao, Integer quantidade, String categoria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.preco = preco;
         this.quantidade = quantidade;
-        this.categoria = categoria;
+        this.nomeCategoria = categoria;
     }
 
     public ProdutoDTO(Produto produto) {
@@ -37,6 +34,6 @@ public class ProdutoDTO {
         this.nome = produto.getNome();
         this.descricao = produto.getDescricao();
         this.quantidade = produto.getQuantidade();
-        this.categoria = new CategoriaDTO(produto.getCategoria());
+        this.nomeCategoria = produto.getCategoria().getNome();
     }
 }

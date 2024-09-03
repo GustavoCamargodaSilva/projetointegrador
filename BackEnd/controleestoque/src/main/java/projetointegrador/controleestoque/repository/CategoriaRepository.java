@@ -11,4 +11,6 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
     @Query("SELECT c FROM Categoria c")
     List<CategoriaProjection> listarCategorias();
+
+    Categoria findByNome(String nome);
 }

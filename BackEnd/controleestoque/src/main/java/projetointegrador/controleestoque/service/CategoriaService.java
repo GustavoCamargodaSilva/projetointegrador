@@ -59,4 +59,13 @@ public class CategoriaService {
                 .orElseThrow(() -> new ResourceNotFoundException("Categoria não encontrada"));
         categoriaRepository.delete(categoria);
     }
+
+    @Transactional(readOnly = true)
+    public Categoria buscarCategoriaPorNome(String nome) {
+        Categoria categoria = categoriaRepository.findByNome(nome);
+        if (categoria == null) {
+            throw new ResourceNotFoundException("Categoria não encontrada");
+        }
+        return categoria;
+    }
 }
